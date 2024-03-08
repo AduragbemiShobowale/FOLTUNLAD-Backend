@@ -9,6 +9,21 @@ const allData = async (req, res) => {
   });
 };
 
+const searchProductByName = async (req, res) => {
+  const productName = req.params.name;
+  try {
+    const product = await Product.findOne({
+      productName: { $regex: productName, $options: "i" },
+    });
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    res.json(product);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const allProvision = async (req, res) => {
   try {
     const products = await Product.find({ category: "Provisions" });
@@ -104,4 +119,5 @@ module.exports = {
   editProduct,
   deleteProduct,
   allLatestProducts,
+  searchProductByName,
 };

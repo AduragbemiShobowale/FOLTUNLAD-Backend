@@ -10,6 +10,7 @@ const {
   editProduct,
   deleteProduct,
   allLatestProducts,
+  searchProductByName,
 } = require("../controllers/productController");
 
 const router = express.Router();
@@ -30,7 +31,11 @@ router
   .all(methodNotAllowed);
 
 router.route("/create").post(createProduct).all(methodNotAllowed);
+
 router.route("/:id").patch(editProduct).all(methodNotAllowed);
+
 router.route("/:id").delete(deleteProduct).all(methodNotAllowed);
+
+router.route("/search/:name").get(searchProductByName).all(methodNotAllowed);
 
 module.exports = router;
