@@ -100,7 +100,7 @@ const allLatestProducts = async (req, res) => {
   try {
     const latestProducts = await Product.find()
       .sort({ createdAt: -1 })
-      .limit(4);
+      .limit(8);
     res.status(200).json({
       latestProducts,
     });
