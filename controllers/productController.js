@@ -12,13 +12,13 @@ const allData = async (req, res) => {
 const searchProductByName = async (req, res) => {
   const productName = req.params.name;
   try {
-    const product = await Product.findOne({
+    const products = await Product.find({
       productName: { $regex: productName, $options: "i" },
     });
-    if (!product) {
+    if (products.length === 0) {
       return res.status(404).json({ message: "Product not found" });
     }
-    res.json(product);
+    res.json(products);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
