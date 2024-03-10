@@ -9,6 +9,7 @@ const productSchema = new mongoose.Schema(
         "Cosmetics & Toiletries",
         "Wines & Drinks",
         "Fragrances",
+        "Grocery",
       ],
       default: "Provisions",
       required: [true, "Please Select a Provision"],

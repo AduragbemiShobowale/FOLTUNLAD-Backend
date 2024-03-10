@@ -1,7 +1,7 @@
 const Product = require("../models/product");
 
 const allData = async (req, res) => {
-  //get all movies and send it as the json response
+  //get all data for products ranging from provisons down to fragrance
   const datas = await Product.find({});
 
   res.status(200).json({
@@ -10,6 +10,7 @@ const allData = async (req, res) => {
 };
 
 const searchProductByName = async (req, res) => {
+  // you can search any product by name
   const productName = req.params.name;
   try {
     const products = await Product.find({
@@ -54,6 +55,15 @@ const allWinesAndDrinks = async (req, res) => {
 const allFragrance = async (req, res) => {
   try {
     const products = await Product.find({ category: "Fragrances" });
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const allGrocery = async (req, res) => {
+  try {
+    const products = await Product.find({ category: "Grocery" });
     res.json(products);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -120,4 +130,5 @@ module.exports = {
   deleteProduct,
   allLatestProducts,
   searchProductByName,
+  allGrocery,
 };

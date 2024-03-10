@@ -11,6 +11,7 @@ const {
   deleteProduct,
   allLatestProducts,
   searchProductByName,
+  allGrocery,
 } = require("../controllers/productController");
 
 const router = express.Router();
@@ -22,6 +23,8 @@ router.route("/provisions").get(allProvision).all(methodNotAllowed);
 router.route("/fragrance").get(allFragrance).all(methodNotAllowed);
 
 router.route("/winesAndDrinks").get(allWinesAndDrinks).all(methodNotAllowed);
+
+router.route("/grocery").get(allGrocery).all(methodNotAllowed);
 
 router.route("/latest").get(allLatestProducts).all(methodNotAllowed);
 
